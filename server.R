@@ -10,7 +10,7 @@
 library(shiny)
 
 shiny.maxRequestSize=50*1024^2
-ngrams<-readRDS("C-1200k3-4ngrams_only4_f3plus1-ad.rds")
+ngrams<-readRDS("C-2400k3-4ngrams_only4_f43plus1-ah.rds")
 
 source("./myPredictiveFunctions.R")
 
