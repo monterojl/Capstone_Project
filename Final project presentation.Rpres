@@ -1,0 +1,52 @@
+NextWord application
+========================================================
+author: Jose Montero
+date: May 27th
+autosize: true
+
+Shiny app: https://monterojl.shinyapps.io/NextWord_App/
+Github repo: https://github.com/monterojl/Capstone_Project
+
+
+Introduction
+========================================================
+
+The "NextWord"" application is a shiny application that given a sentence entered in English, gives a prediction for the most likely word to come next.
+
+In order to build ths application, there have been given the following steps:
+
+- News, Blogs and Twitter text analysis for building an ngrams database
+- Create a predictive algorithm
+- Create a shimy application to interact with the algoritm
+
+Ngrams
+========================================================
+For the aim of the application, we need to analyze the data and explore the words and the sentences that are more frequent and commonly written together (aka ngrams).
+
+The challenge on this step is how to keep this information manageable in terms of size while being somehow accurate. Based on an initial statistical analysis showed in the Milestone report, the following optimizations have been implemented:
+
+- Build an ngrams DB summarized by frequencies.
+- Take into account only those that are contained or contains 3grams with frequecy greater than 1.
+- Store only 4grams with their frequencies, generating dinamically the 3 and 2-grams contained on them, and their respective frequencies (as they can be figured out from the 4-gram information easily)
+
+
+Prediction algorithm
+========================================================
+
+The prediction algorithm is based on the frequencies of appereance tored in the ngrams DB. The bigger ngrams matched, the higher rating is given to the predicted word.
+3 different ngrams DBs were tested with the algorithm. Random testing was done with to sets of 10k lines taken from other parts of the files, giving the following results fo rthe 5 first words predicted:
+- 400k first block of lines parsed from the News, Blogs and Twitter files of the project (1200k lines, around 50MB). 
+- 400k second block of lines parsed from the News, Blogs and Twitter files of the project (1200k lines, around 50MB). 
+- Merged previous 2 DBs (2400k lines, around 90MB). 
+
+As there was no significant difference in the accuracy of the 3 DBs tested (36%-39% for the first testset, 29%-31% fo rthe second testset), and taken into account the size topic, it was decided to use for the application the first one.
+
+Shiny application
+========================================================
+In order to publish the application in an interactive way, a shiny application has been created.
+
+The application is a simple frontend where a sentence in English can be entered. When ready, the Submit button should be clicked and a prediction is given below.
+
+<center>
+![Screenshot](Capture.PNG)
+</center>
